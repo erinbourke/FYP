@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Accommodation Page</title>
+        <link rel="icon" href="data:,">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+        
+
+        <script type='module' src="js/accommodation.js"></script>
+        <script type="module" src="js/points-of-interest.js"></script>
+        <script type="module" src="js/top-picks.js"></script>
+        <script>
+            
+            function validateForm(){
+                const groupID = document.getElementById("groupID").value;
+                const userID = document.getElementById("userID").value;
+                const cityName = document.getElementById("cityName").value;
+
+                if(!groupID || !userID || !cityName){
+                    alert("Please fill in all fields.");
+                    return false;
+                }
+                else{
+                    const userData = {groupID, userID, cityName};
+                    const userDataString = JSON.stringify(userData);
+                    localStorage.setItem('userData', userDataString);
+
+                    //fetchCityCoords(cityName);
+                    //go to accom page
+                    window.location.href = "accommodation.html";
+
+               }
+            }
+            function seeTopPicks(){
+                const groupID = document.getElementById("groupID").value;
+                const userID = document.getElementById("userID").value;
+                const cityName = document.getElementById("cityName").value;
+
+                if(groupID && userID && !cityName){
+                    const userData = {groupID, userID, cityName};
+                    const userDataString = JSON.stringify(userData);
+                    localStorage.setItem("userData", userDataString);
+                    window.location.href = "top-picks.html";
+                }
+                else{
+                    alert("Please fill out you GroupID and UserID to see your Top Picks");
+                }
+            }
+        </script>
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+        <nav class="navbar navbar-dark bg-success">
+            <div class="container ">
+                <span class="navbar-brand mb-0 h1">Vote2G<i class="bi bi-compass text-white ms-2" ></i></span>
+            </div>
+        </nav>  
+        
+        <div class="container d-flex justify-content-center align-items-center" style="min-height: 87vh;">
+            <div class="card shadow p-4"  style="width: 100%; max-width: 500px;border-radius: 20px;">
+                <h2 class="text-center mb-4 card-header">Enter Your Details</h2>  
+        
+                <form  id="setupForm" >
+
+                    <label for="groupID">
+                        <i class="bi bi-people-fill"></i> 
+                        
+                        <span>Enter your Group ID:</span> 
+                    </label>
+
+                    <br>
+                    <input type="text" placeholder="Your Group ID goes here" class="form-control border-success" id="groupID" name ="groupID" required></input>
+                    <br>
+
+                    <label for="userID">
+                        <i class="bi bi-person-fill"></i>
+                        <span>Enter you User ID:</span>
+                    </label>
+
+                    <br>
+                    <input type="text"  placeholder="Your User ID goes here" class="form-control border-success" id="userID" name ="userID" required></input>
+                    <br>
+        
+                    <label for="cityName">
+                        <i class="bi bi-geo-fill"></i>
+                        <span>Enter City Name:</span>
+                    </label>
+                    <br>
+                    <input type="text" placeholder="Your chosen city goes here" class="form-control border-success" id="cityName" name ="cityName" required></input>
+
+                    <br>
+                    <br>
+            
+                    <button type="button" onclick="validateForm()" class="btn btn-outline-success ">Enter</button>
+                    <button type="button" onclick="seeTopPicks()" class="btn btn-outline-success">See Your Top Picks</button>
+    
+                </form>
+            </div>
+        </div>
+        
+        <footer class="bg-success text-white text-center py-2 mt-auto">
+            <small>&copy; Vote2Go</small>
+        </footer>
+        
+        
+
+        
+          
+
+
+    </body>
+</html>
+

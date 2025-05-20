@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Accommodation Page</title>
+        <link rel="icon" href="data:,">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        
+        <script type='module' src="js/accommodation.js"></script> 
+        
+    </head>
+    
+    <body class="d-flex flex-column min-vh-100">
+        <nav class="navbar navbar-dark bg-success">
+            <div class="container ">
+                <span class="navbar-brand mb-0 h1">Vote2G<i class="bi bi-compass text-white ms-2" ></i></span>
+            </div>
+        </nav>  
+        <br>
+        <div class="container d-flex justify-content-center align-items-center" style="min-height: 87vh;">
+            <!-- <div class="card shadow p-4 "  style="width: 100%; max-width: 8000px;border-radius: 20px;"> -->
+            <div>
+                <h2 class='text-center mb-4 card-header'>Choose a Hostel for this city:</h2>
+        
+                <div id="results" class="align-items-center"></div>
+        
+                <script type="module">
+                    import { fetchCityCoords } from './js/accommodation.js';
+            
+                    window.onload = function(){
+                        var userDataString = localStorage.getItem('userData');
+                        if(userDataString){
+                            var userData = JSON.parse(userDataString);
+                            console.log(userData);
+                            const cityName = userData.cityName;
+                            fetchCityCoords(cityName);
+                        }    
+                    }
+                  
+                </script>
+                <script>
+                    function nextPage(){
+                        window.location.href = 'points-of-interest.html';
+                    }
+                </script>
+            <!-- </div> -->
+            </div>
+            <!-- <button type="button" class="btn btn-success mt-3" onclick="nextPage()" id="nextButton" disabled style="position: absolute; bottom: 20px; right: 20px;">Next</button> -->
+            
+            <button type="button" class="btn btn-success" onclick="nextPage()" id="nextButton" disabled style="position: absolute; bottom: 20px; right: 20px;">
+                Next <i class="bi bi-arrow-right-circle ms-1"></i>
+            </button>
+            
+        </div>
+        
+
+        <footer class="bg-success text-white text-center py-2 mt-auto">
+            <small>&copy; Vote2Go</small>
+        </footer>
+    </body>
+    
+</html>

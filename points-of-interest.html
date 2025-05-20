@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Accommodation Page</title>
+        <link rel="icon" href="data:,">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        
+        <script type='module' src="js/points-of-interest.js"></script> 
+        
+    </head>
+    
+    <body class="d-flex flex-column min-vh-100">
+        <nav class="navbar navbar-dark bg-success">
+            <div class="container ">
+                <span class="navbar-brand mb-0 h1">Vote2G<i class="bi bi-compass text-white ms-2" ></i></span>
+            </div>
+        </nav> 
+        <br>
+        <div class="container position-relative" style="min-height: 87vh;">
+            <!-- <div class="card shadow p-4 "  style="width: 100%; max-width: 500px;border-radius: 20px;"> -->
+            <div>
+                <h2 class='text-center mb-4 card-header'>Choose a Point of Interest for this city:</h2>
+
+                <div id="results"></div>
+                
+                <!-- https://www.cloudsurph.com/how-to-pass-variables-from-an-html-page-to-another-with-javascript/#:~:text=We%20have%20one%20way%20to,across%20different%20pages%20and%20sessions. -->
+                <!-- https://medium.com/@cyberbotmachines/how-to-pass-value-from-one-html-page-to-another-using-javascript-3c9ab62df4d  -->
+            
+                <script type="module">
+                    import { fetchCityCoords } from './js/points-of-interest.js';
+                
+                    window.onload = function(){
+                        var userDataString = localStorage.getItem('userData');
+                        if(userDataString){
+                            var userData = JSON.parse(userDataString);
+                            console.log(userData);
+                            const cityName = userData.cityName;
+                            fetchCityCoords(cityName);
+                        }    
+                    }
+                
+                
+                </script>
+                
+        
+                <script>
+                    function nextPage(){
+                        window.location.href = 'top-picks.html';
+                    }
+                </script>
+            </div>
+            
+            <button type="button" class="btn btn-success mt-3" onclick="nextPage()" id="nextButton" disabled style="position: absolute; bottom:0px; right: 10px;">
+                Next <i class="bi bi-arrow-right-circle ms-1"></i>
+            </button>
+        </div>
+        
+        <br>
+        <footer class="bg-success text-white text-center py-2 mt-auto">
+            <small>&copy; Vote2Go</small>
+        </footer>
+    </body>
+    
+</html>

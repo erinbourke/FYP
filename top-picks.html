@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+        <script type="module" src="js/top-picks.js"></script>
+    
+    </head>
+
+    <body class="d-flex flex-column min-vh-100">
+        <nav class="navbar navbar-dark bg-success">
+            <div class="container ">
+                <span class="navbar-brand mb-0 h1">Vote2G<i class="bi bi-compass text-white ms-2" ></i></span>
+            </div>
+        </nav>
+        <h1 class="text-center my-4">Your Groups Top Picks</h1>
+
+        <div id="topAccomContainer"></div>
+        <div id="topPoi"></div>
+        <script type="module">
+            import { getAllCities } from './js/top-picks.js';
+
+            window.onload = function(){
+                var userDataString = localStorage.getItem('userData');
+                if(userDataString){
+                    var userData = JSON.parse(userDataString);
+                    console.log(userData);
+                    getAllCities();
+                }    
+            }
+        </script>
+        <script>
+            function backToFirstPage(){
+                window.location.href = "setup.html";
+            }
+        </script>
+        <div class="text-center mt-4">
+            <button class="btn btn-outline-success" onclick="backToFirstPage()">Back to Start</button>
+        </div>
+        <br>
+
+        <footer class="bg-success text-white text-center py-2 mt-auto">
+            <small>&copy; Vote2Go</small>
+        </footer>
+    </body>
+
+</html>
